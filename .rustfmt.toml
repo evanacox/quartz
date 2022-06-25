@@ -1,0 +1,7 @@
+max_width = 100
+comment_width = 100
+wrap_comments = true
+error_on_line_overflow = true
+error_on_unformatted = true
+edition = "2021"
+version = "Two"

@@ -1,0 +1,8 @@
+[package]
+name = "quartz"
+version = "0.1.0"
+edition = "2021"
+authors = ["Evan Cox <evanacox00 at gmail dot com>"]
+description = "A scrappy compiler backend library"
+
+[dependencies]

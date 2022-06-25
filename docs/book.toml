@@ -1,0 +1,11 @@
+[book]
+authors = ["Evan Cox <evanacox00 at gmail dot com>"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Quartz"
+
+[output.html]
+mathjax-support = true
+site-url = "/quartz/docs/"
+git-repository-url = "https://github.com/evanacox/quartz/tree/master/docs"

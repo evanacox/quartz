@@ -1,0 +1,9 @@
+[package]
+name = "qcc"
+version = "0.1.0"
+edition = "2021"
+authors = ["Evan Cox <evanacox00 at gmail dot com>"]
+description = "The executable used to compile Quartz IR"
+
+[dependencies]
+quartz = { path = "../../lib" }
