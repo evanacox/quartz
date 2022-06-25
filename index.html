@@ -77,7 +77,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html" class="active">Preface</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html" class="active">Preface</a></li><li class="chapter-item expanded "><a href="design/index.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="design/overview.html"><strong aria-hidden="true">1.1.</strong> High-Level</a></li><li class="chapter-item expanded "><a href="design/usage.html"><strong aria-hidden="true">1.2.</strong> Quickstart</a></li></ol></li><li class="chapter-item expanded "><a href="qir/index.html"><strong aria-hidden="true">2.</strong> Quartz IR</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="qir/design.html"><strong aria-hidden="true">2.1.</strong> Design</a></li><li class="chapter-item expanded "><a href="qir/reference.html"><strong aria-hidden="true">2.2.</strong> Reference</a></li></ol></li><li class="chapter-item expanded "><a href="internals/index.html"><strong aria-hidden="true">3.</strong> Internals</a></li><li class="chapter-item expanded "><a href="tools/index.html"><strong aria-hidden="true">4.</strong> Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tools/qcc.html"><strong aria-hidden="true">4.1.</strong> qcc</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -140,36 +140,38 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="preface"><a class="header" href="#preface">Preface</a></h1>
-<p>This book is split into several sections, many of which may be unwanted depending on what exactly you're looking for.</p>
-<h2 id="language"><a class="header" href="#language">Language</a></h2>
-<p>The <a href="./language/index.html">Language</a> section is dedicated to the language itself, including features, syntax, and other
-general language things. This will rarely touch on exactly how those features are <em>implemented</em>.</p>
-<p>Note that this may be incomplete, if you find anything that's missing please create an issue (or a PR) to fix it!</p>
+<p>These docs are split into several sections, many of which may be unwanted depending on what exactly you're looking for.</p>
+<h2 id="design--overview"><a class="header" href="#design--overview">Design &amp; Overview</a></h2>
+<h2 id="qir"><a class="header" href="#qir">QIR</a></h2>
+<p>The <a href="./ir/index.html">QIR</a> section is dedicated to the Quartz IR and its design, including features, syntax, and other
+general language things. This will rarely touch on exactly how those features are <em>implemented</em>. </p>
 <h2 id="compiler-apis"><a class="header" href="#compiler-apis">Compiler APIs</a></h2>
-<p>Note that this book does not contain any information about the actual APIs of the internal compiler libraries, this book
-is solely concerned with the overall design, architecture and implementation of the language and the compiler itself.</p>
-<p>The APIs can be found <a href="https://pages.evanacox.io/kyanite/public/api/kyanite/index.html">here</a>.</p>
+<p>Note that this book does not contain any information about the actual APIs of the compiler libraries, this book
+is solely concerned with the overall design, architecture and implementation of the IR, optimizers and compiler.</p>
+<p>The APIs can be found <a href="https://pages.evanacox.io/quartz/api/quartz/">here</a>.</p>
 <h2 id="compiler-internals"><a class="header" href="#compiler-internals">Compiler Internals</a></h2>
 <p>The <a href="./compiler/index.html">Compiler Internals</a> chapter is solely dedicated to the specific implementation, architecture,
 trickery and general features of the <code>kyanite</code> frontend. It will not explain the features of the language it references,
 besides maybe referencing rules and explaining how those rules are implemented.</p>
 <p>Knowledge of the entirety of <a href="./language/index.html">the language</a> is assumed.</p>
-<h2 id="abi"><a class="header" href="#abi">ABI</a></h2>
-<p>The <a href="./abi/index.html">ABI</a> section is dedicated to the current ABI and environment of Kyanite that is
-implemented/expected by the compiler.</p>
-<p>This is stuff like the type layout, the Kyanite runtime library, etc.</p>
-<p>Knowledge of the entirety of <a href="./language/index.html">the language</a> is assumed.</p>
+<h2 id="command-line-tools"><a class="header" href="#command-line-tools">Command-Line Tools</a></h2>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="next" href="design/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         <div style="clear: both"></div>
                     </nav>
                 </div>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="next" href="design/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>
