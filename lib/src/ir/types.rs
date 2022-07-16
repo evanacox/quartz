@@ -501,8 +501,9 @@ impl IRType for FloatType {
     }
 }
 
-/// Models the `bool` fundamental type. As of right now this type is completely stateless,
-/// but in the future that may change.
+/// Models the `bool` fundamental type.
+///
+/// As of right now this type is completely stateless, but in the future that may change.
 ///
 /// See `bool` in the [Reference](https://pages.evanacox.io/quartz/qir/reference#bool-booleans).
 ///
@@ -541,8 +542,9 @@ impl IRType for BoolType {
     }
 }
 
-/// Models the `ptr` fundamental type. As of right now this type is completely stateless,
-/// but in the future that may change.
+/// Models the `ptr` fundamental type.
+///
+/// As of right now this type is completely stateless, but in the future that may change.
 ///
 /// See `ptr` in the [Reference](https://pages.evanacox.io/quartz/qir/reference#ptr-pointers).
 ///
