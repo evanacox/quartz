@@ -1578,11 +1578,6 @@
 <span id="1570">1570</span>
 <span id="1571">1571</span>
 <span id="1572">1572</span>
-<span id="1573">1573</span>
-<span id="1574">1574</span>
-<span id="1575">1575</span>
-<span id="1576">1576</span>
-<span id="1577">1577</span>
 </pre><pre class="rust"><code><span class="comment">//======---------------------------------------------------------------======//</span>
 <span class="comment">// Copyright (c) 2022 Evan Cox &lt;evanacox00@gmail.com&gt;.                       //</span>
 <span class="comment">//                                                                           //</span>
@@ -1639,8 +1634,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Example</span>
 <span class="doccomment">/// ```</span>
-<span class="doccomment">/// use quartz::ir::{Type, IRType};</span>
-<span class="doccomment">///</span>
+<span class="doccomment">/// # use quartz::ir::*;</span>
 <span class="doccomment">/// let ty = Type::i16();</span>
 <span class="doccomment">/// let layout = ty.layout().unwrap();</span>
 <span class="doccomment">///</span>
@@ -1664,8 +1658,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::*;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::*;</span>
     <span class="doccomment">/// let ty = Type::i32();</span>
     <span class="doccomment">/// let layout = ty.layout().unwrap();</span>
     <span class="doccomment">///</span>
@@ -1680,8 +1673,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::*;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::*;</span>
     <span class="doccomment">/// let ty = Type::i32();</span>
     <span class="doccomment">/// let layout = ty.layout().unwrap();</span>
     <span class="doccomment">///</span>
@@ -1697,6 +1689,16 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// Note that *any* type includes odd types, such as opaque structures,</span>
 <span class="doccomment">/// zero-length arrays, empty structures, etc.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// ```</span>
+<span class="doccomment">/// # use quartz::ir::*;</span>
+<span class="doccomment">/// fn check_if_16_bytes_large(ty: &amp;dyn IRType) -&gt; bool {</span>
+<span class="doccomment">///     match ty.layout() {</span>
+<span class="doccomment">///         Some(layout) =&gt; layout.size() == 16,</span>
+<span class="doccomment">///         None =&gt; false</span>
+<span class="doccomment">///     }</span>
+<span class="doccomment">/// }</span>
+<span class="doccomment">/// ```</span>
 <span class="attribute">#[<span class="ident">contract_trait</span>]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">IRType</span> {
     <span class="doccomment">/// Gets the exact size (in bytes) of the types. If the type is zero-sized,</span>
@@ -1739,8 +1741,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::*;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::*;</span>
     <span class="doccomment">/// let ty = Type::f64();</span>
     <span class="doccomment">/// let layout = ty.layout().unwrap();</span>
     <span class="doccomment">///</span>
@@ -1776,8 +1777,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Example</span>
 <span class="doccomment">/// ```</span>
-<span class="doccomment">/// use quartz::ir::*;</span>
-<span class="doccomment">///</span>
+<span class="doccomment">/// # use quartz::ir::*;</span>
 <span class="doccomment">/// let t1 = IntType::i8();</span>
 <span class="doccomment">/// assert_eq!(t1.width(), 8);</span>
 <span class="doccomment">/// assert_eq!(t1.mask(), 0xFF);</span>
@@ -1801,8 +1801,7 @@
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;# Example&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;```&quot;</span>]</span>
-        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;use quartz::ir::IntType;&quot;</span>]</span>
-        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
+        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;# use quartz::ir::IntType;&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="macro">concat!</span>(<span class="string">&quot;let t1 = IntType::i&quot;</span>, <span class="macro">stringify!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">n</span>), <span class="string">&quot;();&quot;</span>)]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="macro">concat!</span>(<span class="string">&quot;let t2 = IntType::new(&quot;</span>, <span class="macro">stringify!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">n</span>), <span class="string">&quot;);&quot;</span>)]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
@@ -1830,8 +1829,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::*;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::*;</span>
     <span class="doccomment">/// let ty = IntType::new(32); // ty =&gt; i32</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// assert_eq!(ty.width(), 32);</span>
@@ -1855,8 +1853,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::IntType;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::IntType;</span>
     <span class="doccomment">/// let ty = IntType::new(64);</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// assert_eq!(ty.width(), 64);</span>
@@ -1872,8 +1869,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::IntType;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::IntType;</span>
     <span class="doccomment">/// let t1 = IntType::i32();</span>
     <span class="doccomment">/// let t2 = IntType::i8();</span>
     <span class="doccomment">///</span>
@@ -1890,8 +1886,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::IntType;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::IntType;</span>
     <span class="doccomment">/// let t1 = IntType::new(64);</span>
     <span class="doccomment">/// let t2 = IntType::new(16);</span>
     <span class="doccomment">///</span>
@@ -1907,8 +1902,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::IntType;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::IntType;</span>
     <span class="doccomment">/// let t1 = IntType::new(8);</span>
     <span class="doccomment">/// assert_eq!(t1.is_i8(), true);</span>
     <span class="doccomment">///</span>
@@ -1924,8 +1918,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::IntType;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::IntType;</span>
     <span class="doccomment">/// let t1 = IntType::new(16);</span>
     <span class="doccomment">/// assert_eq!(t1.is_i16(), true);</span>
     <span class="doccomment">///</span>
@@ -1941,8 +1934,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::IntType;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::IntType;</span>
     <span class="doccomment">/// let t1 = IntType::new(32);</span>
     <span class="doccomment">/// assert_eq!(t1.is_i32(), true);</span>
     <span class="doccomment">///</span>
@@ -1958,8 +1950,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::IntType;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::IntType;</span>
     <span class="doccomment">/// let t1 = IntType::new(64);</span>
     <span class="doccomment">/// assert_eq!(t1.is_i64(), true);</span>
     <span class="doccomment">///</span>
@@ -1986,6 +1977,7 @@
 <span class="doccomment">/// Maps the hardware representation of the floating-point types</span>
 <span class="doccomment">/// to enum variants.</span>
 <span class="doccomment">///</span>
+<span class="doccomment">/// These map directly to types defined in the IEEE-754 standard.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">IEEEFloat</span> {
     <span class="doccomment">/// Models `f32`, an IEEE single-precision float (`binary32`).</span>
@@ -2003,8 +1995,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Example</span>
 <span class="doccomment">/// ```</span>
-<span class="doccomment">/// use quartz::ir::*;</span>
-<span class="doccomment">///</span>
+<span class="doccomment">/// # use quartz::ir::*;</span>
 <span class="doccomment">/// let t1 = Type::float(IEEEFloat::Single);</span>
 <span class="doccomment">/// let t2 = Type::f32();</span>
 <span class="doccomment">///</span>
@@ -2020,8 +2011,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::*;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::*;</span>
     <span class="doccomment">/// let t1 = FloatType::new(IEEEFloat::Single);</span>
     <span class="doccomment">/// let t2 = FloatType::f32();</span>
     <span class="doccomment">///</span>
@@ -2036,8 +2026,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::*;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::*;</span>
     <span class="doccomment">/// let t1 = FloatType::new(IEEEFloat::Single);</span>
     <span class="doccomment">/// let t2 = FloatType::f32();</span>
     <span class="doccomment">///</span>
@@ -2051,8 +2040,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::*;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::*;</span>
     <span class="doccomment">/// let t1 = FloatType::new(IEEEFloat::Double);</span>
     <span class="doccomment">/// let t2 = FloatType::f64();</span>
     <span class="doccomment">///</span>
@@ -2066,8 +2054,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::*;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::*;</span>
     <span class="doccomment">/// let t1 = FloatType::new(IEEEFloat::Single);</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// assert_eq!(t1.real(), IEEEFloat::Single);</span>
@@ -2094,9 +2081,18 @@
     }
 }
 
-<span class="doccomment">/// Models the `bool` fundamental type.</span>
+<span class="doccomment">/// Models the `bool` fundamental type. As of right now this type is completely stateless,</span>
+<span class="doccomment">/// but in the future that may change.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// See `bool` in the [Reference](https://pages.evanacox.io/quartz/qir/reference#bool-booleans)</span>
+<span class="doccomment">/// See `bool` in the [Reference](https://pages.evanacox.io/quartz/qir/reference#bool-booleans).</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Example</span>
+<span class="doccomment">/// ```</span>
+<span class="doccomment">/// # use quartz::ir::*;</span>
+<span class="doccomment">/// let ty = Type::bool();</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// assert!(ty.is_bool());</span>
+<span class="doccomment">/// ```</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BoolType</span>(<span class="ident">HiddenZeroSize</span>);
 
@@ -2105,8 +2101,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::BoolType;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::BoolType;</span>
     <span class="doccomment">/// let b = BoolType::new();</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
@@ -2126,9 +2121,18 @@
     }
 }
 
-<span class="doccomment">/// Models the `ptr` fundamental type.</span>
+<span class="doccomment">/// Models the `ptr` fundamental type. As of right now this type is completely stateless,</span>
+<span class="doccomment">/// but in the future that may change.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// See `ptr` in the [Reference](https://pages.evanacox.io/quartz/qir/reference#ptr-pointers)</span>
+<span class="doccomment">/// See `ptr` in the [Reference](https://pages.evanacox.io/quartz/qir/reference#ptr-pointers).</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Example</span>
+<span class="doccomment">/// ```</span>
+<span class="doccomment">/// # use quartz::ir::*;</span>
+<span class="doccomment">/// let ty = Type::ptr();</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// assert!(ty.is_ptr());</span>
+<span class="doccomment">/// ```</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PtrType</span>(<span class="ident">HiddenZeroSize</span>);
 
@@ -2137,8 +2141,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::PtrType;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::PtrType;</span>
     <span class="doccomment">/// let b = PtrType::new();</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
@@ -2169,7 +2172,15 @@
 <span class="doccomment">/// Implemented as a wrapper around a boxed type, so we don&#39;t run into</span>
 <span class="doccomment">/// recursive type issues with `IRType`.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// See `[T; N]` in the [Reference](https://pages.evanacox.io/quartz/qir/reference#t-n-arrays)</span>
+<span class="doccomment">/// See `[T; N]` in the [Reference](https://pages.evanacox.io/quartz/qir/reference#t-n-arrays).</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Example</span>
+<span class="doccomment">/// ```</span>
+<span class="doccomment">/// # use quartz::ir::*;</span>
+<span class="doccomment">/// let ty = Type::array(Type::i16(), 512);</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// assert!(ty.is_array());</span>
+<span class="doccomment">/// ```</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ArrayType</span> {
@@ -2181,8 +2192,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::{ArrayType, Type};</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::{ArrayType, Type};</span>
     <span class="doccomment">/// let t1 = Type::i8();</span>
     <span class="doccomment">/// let t2 = ArrayType::new(t1.clone(), 16);</span>
     <span class="doccomment">///</span>
@@ -2199,8 +2209,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::{ArrayType, Type};</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::{ArrayType, Type};</span>
     <span class="doccomment">/// let t1 = Type::i8();</span>
     <span class="doccomment">/// let t2 = ArrayType::new(t1.clone(), 16);</span>
     <span class="doccomment">///</span>
@@ -2214,8 +2223,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::{ArrayType, Type};</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::{ArrayType, Type};</span>
     <span class="doccomment">/// let t1 = Type::i8();</span>
     <span class="doccomment">/// let t2 = ArrayType::new(t1.clone(), 64);</span>
     <span class="doccomment">///</span>
@@ -2229,8 +2237,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::{ArrayType, Type};</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::{ArrayType, Type};</span>
     <span class="doccomment">/// let t1 = ArrayType::new(Type::i8(), 16);</span>
     <span class="doccomment">/// assert_eq!(t1.is_empty(), false);</span>
     <span class="doccomment">///</span>
@@ -2304,10 +2311,11 @@
 <span class="doccomment">/// Implemented as a wrapper around a boxed type, so we don&#39;t run into</span>
 <span class="doccomment">/// recursive type issues with `IRType`.</span>
 <span class="doccomment">///</span>
+<span class="doccomment">/// See `{ T... }` in the [Reference](https://pages.evanacox.io/quartz/qir/reference#-t--structures).</span>
+<span class="doccomment">///</span>
 <span class="doccomment">/// # Example</span>
 <span class="doccomment">/// ```</span>
-<span class="doccomment">/// use quartz::ir::*;</span>
-<span class="doccomment">///</span>
+<span class="doccomment">/// # use quartz::ir::*;</span>
 <span class="doccomment">/// // ty =&gt; { ptr, i64, i64 }</span>
 <span class="doccomment">/// let ty = StructType::new([</span>
 <span class="doccomment">///     Type::ptr(),</span>
@@ -2315,8 +2323,6 @@
 <span class="doccomment">///     Type::i64()</span>
 <span class="doccomment">/// ]);</span>
 <span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// See `{ T... }` in the [Reference](https://pages.evanacox.io/quartz/qir/reference#-t--structures)</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StructType</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">StructTypeData</span><span class="op">&gt;</span>);
@@ -2326,8 +2332,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::*;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::*;</span>
     <span class="doccomment">/// // ty =&gt; { }</span>
     <span class="doccomment">/// let ty = StructType::empty();</span>
     <span class="doccomment">///</span>
@@ -2346,8 +2351,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::{StructType, Type};</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::{StructType, Type};</span>
     <span class="doccomment">/// // ty =&gt; { i32, ptr }</span>
     <span class="doccomment">/// let ty = StructType::new([Type::i32(), Type::ptr()]);</span>
     <span class="doccomment">///</span>
@@ -2362,9 +2366,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::{StructType, Type};</span>
-    <span class="doccomment">/// use smallvec::smallvec;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::{StructType, Type};</span>
+    <span class="doccomment">/// # use smallvec::smallvec;</span>
     <span class="doccomment">/// // ty =&gt; { i32, ptr }</span>
     <span class="doccomment">/// let ty = StructType::from_vec(smallvec![Type::i32(), Type::ptr()]);</span>
     <span class="doccomment">///</span>
@@ -2385,8 +2388,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::*;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::*;</span>
     <span class="doccomment">/// let t1 = StructType::new([Type::i8(), Type::i8()]);</span>
     <span class="doccomment">/// assert_eq!(t1.members(), [Type::i8(), Type::i8()]);</span>
     <span class="doccomment">///</span>
@@ -2402,8 +2404,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::*;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::*;</span>
     <span class="doccomment">/// let t1 = StructType::new([Type::i8(), Type::i8()]);</span>
     <span class="doccomment">/// assert_eq!(t1.len(), 2);</span>
     <span class="doccomment">///</span>
@@ -2419,8 +2420,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::*;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::*;</span>
     <span class="doccomment">/// let t1 = StructType::new([Type::i8(), Type::i8()]);</span>
     <span class="doccomment">/// assert_eq!(t1.is_empty(), false);</span>
     <span class="doccomment">///</span>
@@ -2488,8 +2488,7 @@
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="macro">concat!</span>(<span class="string">&quot;Checks if `self` is currently a `&quot;</span>, <span class="macro">stringify!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant</span>), <span class="string">&quot;`.&quot;</span>)]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;```&quot;</span>]</span>
-        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;use quartz::ir::*;&quot;</span>]</span>
-        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
+        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;# use quartz::ir::*;&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="macro">concat!</span>(<span class="string">&quot;let ty = &quot;</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">right_init</span>, <span class="string">&quot;;&quot;</span>)]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="macro">concat!</span>(<span class="string">&quot;assert_eq!(ty.is_&quot;</span>, <span class="macro">stringify!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lower</span>), <span class="string">&quot;(), true);&quot;</span>)]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="macro">concat!</span>(<span class="string">&quot;assert_eq!(ty.is_&quot;</span>, <span class="macro">stringify!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">wrong_lower</span>), <span class="string">&quot;(), false);&quot;</span>)]</span>
@@ -2509,15 +2508,13 @@
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;# Examples&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;```&quot;</span>]</span>
-        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;use quartz::ir::*;&quot;</span>]</span>
-        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
+        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;# use quartz::ir::*;&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="macro">concat!</span>(<span class="string">&quot;let ty = &quot;</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">right_init</span>, <span class="string">&quot;;&quot;</span>)]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="macro">concat!</span>(<span class="string">&quot;let data: &quot;</span>, <span class="macro">stringify!</span>(<span class="macro-nonterminal">$</span><span class="kw">type</span>), <span class="string">&quot; = ty.unwrap_&quot;</span>, <span class="macro">stringify!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lower</span>), <span class="string">&quot;();&quot;</span>)]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;```&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;```should_panic&quot;</span>]</span>
-        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;use quartz::ir::*;&quot;</span>]</span>
-        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
+        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;# use quartz::ir::*;&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="macro">concat!</span>(<span class="string">&quot;let ty = &quot;</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">wrong_init</span>, <span class="string">&quot;;&quot;</span>)]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="macro">concat!</span>(<span class="string">&quot;let data: &quot;</span>, <span class="macro">stringify!</span>(<span class="macro-nonterminal">$</span><span class="kw">type</span>), <span class="string">&quot; = ty.unwrap_&quot;</span>, <span class="macro">stringify!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lower</span>), <span class="string">&quot;(); // panics!&quot;</span>)]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;```&quot;</span>]</span>
@@ -2536,15 +2533,13 @@
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;# Examples&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;```&quot;</span>]</span>
-        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;use quartz::ir::*;&quot;</span>]</span>
-        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
+        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;# use quartz::ir::*;&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="macro">concat!</span>(<span class="string">&quot;let ty = &quot;</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">right_init</span>, <span class="string">&quot;;&quot;</span>)]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="macro">concat!</span>(<span class="string">&quot;let data: &quot;</span>, <span class="macro">stringify!</span>(<span class="macro-nonterminal">$</span><span class="kw">type</span>), <span class="string">&quot; = ty.expect_&quot;</span>, <span class="macro">stringify!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lower</span>), <span class="string">&quot;(\&quot;should be the right type\&quot;);&quot;</span>)]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;```&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;```should_panic&quot;</span>]</span>
-        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;use quartz::ir::*;&quot;</span>]</span>
-        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
+        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;# use quartz::ir::*;&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="macro">concat!</span>(<span class="string">&quot;let ty = &quot;</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">wrong_init</span>, <span class="string">&quot;;&quot;</span>)]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="macro">concat!</span>(<span class="string">&quot;let data: &quot;</span>, <span class="macro">stringify!</span>(<span class="macro-nonterminal">$</span><span class="kw">type</span>), <span class="string">&quot; = ty.expect_&quot;</span>, <span class="macro">stringify!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lower</span>), <span class="string">&quot;(\&quot;should be the right type\&quot;); // panics!&quot;</span>)]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;```&quot;</span>]</span>
@@ -2568,8 +2563,7 @@
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;# Example&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;```&quot;</span>]</span>
-        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;use quartz::ir::Type;&quot;</span>]</span>
-        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
+        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;# use quartz::ir::Type;&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;let ty1 = Type::i8();&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;let ty2 = Type::int(8);&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
@@ -2589,8 +2583,7 @@
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;# Example&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;```&quot;</span>]</span>
-        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;use quartz::ir::*;&quot;</span>]</span>
-        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
+        <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;# use quartz::ir::*;&quot;</span>]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="macro">concat!</span>(<span class="string">&quot;let ty1 = Type::f&quot;</span>, <span class="macro">stringify!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">len</span>), <span class="string">&quot;();&quot;</span>)]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="macro">concat!</span>(<span class="string">&quot;let ty2 = Type::float(IEEEFloat::&quot;</span>, <span class="macro">stringify!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">long</span>), <span class="string">&quot;);&quot;</span>)]</span>
         <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
@@ -2608,8 +2601,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::Type;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::Type;</span>
     <span class="doccomment">/// let ty = Type::bool();</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// assert!(ty.is_bool());</span>
@@ -2623,8 +2615,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::Type;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::Type;</span>
     <span class="doccomment">/// let ty = Type::int(32);</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// assert!(ty.is_int());</span>
@@ -2635,17 +2626,11 @@
         <span class="ident"><span class="self">Self</span>::Int</span>(<span class="ident">IntType::of_width_unchecked</span>(<span class="ident">bit_width</span>))
     }
 
-    <span class="macro">int_shorthand!</span>(<span class="number">8</span>, <span class="ident">i8</span>);
-    <span class="macro">int_shorthand!</span>(<span class="number">16</span>, <span class="ident">i16</span>);
-    <span class="macro">int_shorthand!</span>(<span class="number">32</span>, <span class="ident">i32</span>);
-    <span class="macro">int_shorthand!</span>(<span class="number">64</span>, <span class="ident">i64</span>);
-
     <span class="doccomment">/// Creates a type modeling `fN` from a given type of float.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::*;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::*;</span>
     <span class="doccomment">/// let ty = Type::float(IEEEFloat::Single);</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// assert_eq!(ty.is_float(), true)</span>
@@ -2655,14 +2640,11 @@
         <span class="ident"><span class="self">Self</span>::Float</span>(<span class="ident">FloatType::new</span>(<span class="ident">ty</span>))
     }
 
-    <span class="macro">float_shorthand!</span>(<span class="number">32</span>, <span class="ident">Single</span>, <span class="ident">f32</span>);
-    <span class="macro">float_shorthand!</span>(<span class="number">64</span>, <span class="ident">Double</span>, <span class="ident">f64</span>);
-
     <span class="doccomment">/// Creates a new `ptr` type. Equivalent to `Type::Ptr(PtrType::new())`.</span>
     <span class="doccomment">///</span>
+    <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::Type;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::Type;</span>
     <span class="doccomment">/// let ty = Type::ptr();</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// assert_eq!(ty.is_ptr(), true);</span>
@@ -2674,9 +2656,9 @@
 
     <span class="doccomment">/// Creates a new `[T; N]` type. Equivalent to `Type::Array(ArrayType::new(ty, len))`.</span>
     <span class="doccomment">///</span>
+    <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::Type;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::Type;</span>
     <span class="doccomment">/// let ty = Type::array(Type::i32(), 16);</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// assert_eq!(ty.is_array(), true);</span>
@@ -2688,9 +2670,9 @@
 
     <span class="doccomment">/// Creates a new `{ T... }` type. Equivalent to `Type::Struct(StructType::new(members))`.</span>
     <span class="doccomment">///</span>
+    <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::Type;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::Type;</span>
     <span class="doccomment">/// let ty = Type::structure([Type::f64(), Type::f64()]);</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// assert_eq!(ty.is_struct(), true);</span>
@@ -2700,11 +2682,19 @@
         <span class="ident"><span class="self">Self</span>::Struct</span>(<span class="ident">StructType::new</span>(<span class="ident">members</span>))
     }
 
+    <span class="macro">int_shorthand!</span>(<span class="number">8</span>, <span class="ident">i8</span>);
+    <span class="macro">int_shorthand!</span>(<span class="number">16</span>, <span class="ident">i16</span>);
+    <span class="macro">int_shorthand!</span>(<span class="number">32</span>, <span class="ident">i32</span>);
+    <span class="macro">int_shorthand!</span>(<span class="number">64</span>, <span class="ident">i64</span>);
+
+    <span class="macro">float_shorthand!</span>(<span class="number">32</span>, <span class="ident">Single</span>, <span class="ident">f32</span>);
+    <span class="macro">float_shorthand!</span>(<span class="number">64</span>, <span class="ident">Double</span>, <span class="ident">f64</span>);
+
     <span class="doccomment">/// Creates the empty `{ }` type. Equivalent to `Type::Struct(StructType::empty())`.</span>
     <span class="doccomment">///</span>
+    <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use quartz::ir::Type;</span>
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// # use quartz::ir::Type;</span>
     <span class="doccomment">/// let ty = Type::empty_struct();</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// assert_eq!(ty.is_struct(), true);</span>
