@@ -22,8 +22,11 @@ jobs:
           toolchain: stable
 
       - uses: Swatinem/rust-cache@v1
+
       - name: Build API Docs
         uses: actions-rs/cargo@v1
+        env:
+          RUSTDOCFLAGS: --html-in-header ./docs/rustdoc/header.html --html-after-content ./docs/rustdoc/after.html
         with:
           command: doc
           args: --no-deps --package quartz
