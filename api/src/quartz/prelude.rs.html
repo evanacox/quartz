@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `lib/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `lib/src/prelude.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>prelude.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
     <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
@@ -33,33 +33,6 @@
 <span id="25">25</span>
 <span id="26">26</span>
 <span id="27">27</span>
-<span id="28">28</span>
-<span id="29">29</span>
-<span id="30">30</span>
-<span id="31">31</span>
-<span id="32">32</span>
-<span id="33">33</span>
-<span id="34">34</span>
-<span id="35">35</span>
-<span id="36">36</span>
-<span id="37">37</span>
-<span id="38">38</span>
-<span id="39">39</span>
-<span id="40">40</span>
-<span id="41">41</span>
-<span id="42">42</span>
-<span id="43">43</span>
-<span id="44">44</span>
-<span id="45">45</span>
-<span id="46">46</span>
-<span id="47">47</span>
-<span id="48">48</span>
-<span id="49">49</span>
-<span id="50">50</span>
-<span id="51">51</span>
-<span id="52">52</span>
-<span id="53">53</span>
-<span id="54">54</span>
 </pre><pre class="rust"><code><span class="comment">//======---------------------------------------------------------------======//</span>
 <span class="comment">// Copyright (c) 2022 Evan Cox &lt;evanacox00@gmail.com&gt;.                       //</span>
 <span class="comment">//                                                                           //</span>
@@ -76,44 +49,17 @@
 <span class="comment">// limitations under the License.                                            //</span>
 <span class="comment">//======---------------------------------------------------------------======//</span>
 
-<span class="attribute">#![<span class="ident">deny</span>(<span class="ident">missing_docs</span>)]</span>
-<span class="attribute">#![<span class="ident">deny</span>(<span class="ident">rustdoc::broken_intra_doc_links</span>)]</span>
-<span class="attribute">#![<span class="ident">deny</span>(<span class="ident">rustdoc::private_intra_doc_links</span>)]</span>
-
-<span class="doccomment">//! # Quartz</span>
+<span class="doccomment">//! # Quartz Prelude</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! Quartz is a compiler middle- and back-end library in the same vein as LLVM or Cranelift.</span>
+<span class="doccomment">//! This prelude re-exports the essentials for working with Quartz. Most notably,</span>
+<span class="doccomment">//! it re-exports almost all of the IR APIs, along with some of the simple compile APIs.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! This crate contains the APIs necessary to create, manipulate, and compile Quartz IR (QIR),</span>
-<span class="doccomment">//! the IR format used throughout the project.</span>
+<span class="doccomment">//! More advanced cases will always need to import directly, this re-exported subset</span>
+<span class="doccomment">//! is meant to be enough for simple tutorial/example programs to compile.</span>
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">ir</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">prelude</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ir</span>;
 
-<span class="doccomment">/// Adds two numbers together.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ## Example</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use quartz::add_two;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let result = add_two(2, 2);</span>
-<span class="doccomment">/// assert_eq!(result, 4);</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_two</span>(<span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>) -&gt; <span class="ident">i32</span> {
-    <span class="ident">x</span> <span class="op">+</span> <span class="ident">y</span>
-}
-
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">it_works</span>() {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">add_two</span>(<span class="number">2</span>, <span class="number">2</span>);
-
-        <span class="macro">assert_eq!</span>(<span class="ident">result</span>, <span class="number">4</span>);
-    }
-}
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">ir</span>::<span class="kw-2">*</span>;
 </code></pre></div>
 </section></div></main><script>renderMathInElement(document.body, {
     delimiters: [

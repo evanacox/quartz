@@ -165,6 +165,78 @@ besides maybe referencing rules and explaining how those rules are implemented.<
 or whatever other compiler IR you've seen before. </p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="qir-design-notes"><a class="header" href="#qir-design-notes">QIR Design Notes</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="quartz-ir-reference"><a class="header" href="#quartz-ir-reference">Quartz IR Reference</a></h1>
+<h2 id="structure"><a class="header" href="#structure">Structure</a></h2>
+<h2 id="memory-model"><a class="header" href="#memory-model">Memory Model</a></h2>
+<p>Bytes in QIR are 8-bit. </p>
+<h2 id="types"><a class="header" href="#types">Types</a></h2>
+<h3 id="bool-booleans"><a class="header" href="#bool-booleans"><code>bool</code>: Booleans</a></h3>
+<p><code>bool</code> models the pure idea of a boolean, with two states: <code>true</code> and <code>false</code>. </p>
+<p>They are not 'integers' as they are in LLVM and some other IRs, although they can be
+converted into integers and back easily with the <code>btoi</code> and <code>itob</code> instructions.</p>
+<p>All <code>bool</code>s are exactly byte sized and byte aligned, i.e. they are equivalent to an <code>i8</code>
+in size, alignment, and other storage expectations.</p>
+<h3 id="in-integers"><a class="header" href="#in-integers"><code>iN</code>: Integers</a></h3>
+<p><code>iN</code> models the concept of two's complement integers, and acts the same way that
+integers do on the vast majority of computers. Unlike integers in most languages, they
+are sign-less. Note that this does not mean <em>unsigned</em>, instead, sign is determined by the
+instruction. This more closely models the hardware, and allows more granular control over
+the behavior / guarantees that are desired. </p>
+<p>Integers are in the form <code>iN</code>, such that \(N \in \{8, 16, 32, 64\} \). Support for
+wider integers (i.e. <code>i128</code>) or arbitrary-width integers (i.e. <code>i37</code>) may come in the future.</p>
+<p>The size of an integer is exactly as many bytes as is required to store \( N \) bits,
+and the alignment of an integer is exactly the same as its size. </p>
+<h3 id="fn-floats"><a class="header" href="#fn-floats"><code>fN</code>: Floats</a></h3>
+<p><code>fN</code> model floating-point numbers that follow the IEEE-754 standard. Currently, only two
+are supported:</p>
+<ul>
+<li><code>f32</code>: IEEE single-precision, i.e. <code>binary32</code></li>
+<li><code>f64</code>: IEEE double-precision, i.e. <code>binary64</code></li>
+</ul>
+<p>In the future, others may be supported (e.g. <code>f128</code> for IEEE quads).</p>
+<p>The size of a float is exactly as many bytes as is required to store \( N \) bits,
+and the alignment of a float is exactly the same as its size.</p>
+<h3 id="ptr-pointers"><a class="header" href="#ptr-pointers"><code>ptr</code>: Pointers</a></h3>
+<p><code>ptr</code> models the idea of a pointer, and nothing else. Unlike many high-level languages, pointers
+are untyped.</p>
+<h3 id="t-n-arrays"><a class="header" href="#t-n-arrays"><code>[T; N]</code>: Arrays</a></h3>
+<p><code>[T; N]</code> models contiguous blocks of storage, approximately equivalent to arrays in C. Arrays are considered to 
+be aggregate types, and thus aggregate operations can be used on them. Each array index is considered
+an independent element.</p>
+<p>They take up exactly <code>sizeof(T) * N</code> bytes of storage, with alignment that is equal to <code>alignof(T)</code>. 
+Note that this means that arrays that satisfy one of the following conditions are zero-sized:</p>
+<ul>
+<li><code>N == 0</code></li>
+<li><code>sizeof(T) == 0</code></li>
+</ul>
+<pre><code>%Empty = [i8; 0]
+%Empty2 = [Empty; 64]
+%Ints = [i64; 512]
+%Matrix3D = [[[i64; 16]; 16]; 16]
+</code></pre>
+<h3 id="-ts--structures"><a class="header" href="#-ts--structures"><code>{ Ts... }</code>: Structures</a></h3>
+<p><code>{ T... }</code> models a <code>struct</code> in C, and conform to the same ABI as C structures would for a given target. They
+are aggregate types, and thus each member of the structure is one element and can be accessed using
+aggregate instructions. </p>
+<p>Structures are padded, and their size is thus determined by the order of each element, and the size/align
+of each element. Note that structures satisfying one of the following conditions are zero-sized:</p>
+<ul>
+<li>No elements</li>
+<li>Every element is zero-sized</li>
+</ul>
+<pre><code>%Vec = { ptr, i64, i64 }
+%Empty = { }
+%Nested = { { i32, i32 }, f64, [i8; 64] }
+</code></pre>
+<h2 id="instructions"><a class="header" href="#instructions">Instructions</a></h2>
+<h3 id="aggregate-access"><a class="header" href="#aggregate-access">Aggregate Access</a></h3>
+<h4 id="extract---get-element"><a class="header" href="#extract---get-element"><code>extract</code> - Get Element</a></h4>
+<h4 id="insert---set-element"><a class="header" href="#insert---set-element"><code>insert</code> - Set Element</a></h4>
+<h4 id="ptrinto---get-pointer-to-element"><a class="header" href="#ptrinto---get-pointer-to-element"><code>ptrinto</code> - Get Pointer To Element</a></h4>
+<h3 id="conversions"><a class="header" href="#conversions">Conversions</a></h3>
+<h4 id="btoi---bool-to-int"><a class="header" href="#btoi---bool-to-int"><code>btoi</code> - Bool to Int</a></h4>
+<h4 id="ftoi---float-to-int"><a class="header" href="#ftoi---float-to-int"><code>ftoi</code> - Float to Int</a></h4>
+<h4 id="itob---int-to-bool"><a class="header" href="#itob---int-to-bool"><code>itob</code> - Int to Bool</a></h4>
+<h4 id="itof--"><a class="header" href="#itof--"><code>itof</code> -</a></h4>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="compiler-internals-1"><a class="header" href="#compiler-internals-1">Compiler Internals</a></h1>
 <p>This goes over the internal structure of the compiler, optimizers, and other modules of Quartz. These
 may be incomplete or in-progress. </p>

@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["add_two","Adds two numbers together."]]});
+initSidebarItems({"fn":[["add_two","Adds two numbers together."]],"mod":[["ir","Quartz IR"],["prelude","Quartz Prelude"]]});

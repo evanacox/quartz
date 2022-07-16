@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Models the accessible operations on any given type."><meta name="keywords" content="rust, rustlang, rust-lang, IRType"><title>IRType in quartz::ir - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
+</head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../quartz/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../quartz/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"><a href="#">IRType</a></h2><div class="sidebar-elems"><section><div class="block"><h3 class="sidebar-title"><a href="#provided-methods">Provided Methods</a></h3><ul><li><a href="#method.align_req">align_req</a></li><li><a href="#method.layout">layout</a></li><li><a href="#method.size_req">size_req</a></li></ul></div><div class="block"><h3 class="sidebar-title"><a href="#implementors">Implementors</a></h3></div></section><h2 class="location"><a href="index.html">In quartz::ir</a></h2><div id="sidebar-vars" data-name="IRType" data-ty="trait" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../quartz/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Trait <a href="../index.html">quartz</a>::<wbr><a href="index.html">ir</a>::<wbr><a class="trait" href="#">IRType</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../../src/quartz/ir/types.rs.html#116-174">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust trait"><code>pub trait IRType {
+    fn <a href="#method.size_req" class="fnname">size_req</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/1.62.0/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/1.62.0/std/primitive.u64.html">u64</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.align_req" class="fnname">align_req</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/1.62.0/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/1.62.0/std/primitive.u64.html">u64</a>&gt; { ... }
+<span class="item-spacer"></span>    fn <a href="#method.layout" class="fnname">layout</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/1.62.0/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.TypeLayout.html" title="struct quartz::ir::TypeLayout">TypeLayout</a>&gt; { ... }
+}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Models the accessible operations on any given type.</p>
+<p>Note that <em>any</em> type includes odd types, such as opaque structures,
+zero-length arrays, empty structures, etc.</p>
+</div></details><h2 id="provided-methods" class="small-section-header">Provided Methods<a href="#provided-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="method.size_req" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/quartz/ir/types.rs.html#131">source</a></div><h4 class="code-header">fn <a href="#method.size_req" class="fnname">size_req</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/1.62.0/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/1.62.0/std/primitive.u64.html">u64</a>&gt;</h4></div></summary><div class="docblock"><p>Gets the exact size (in bytes) of the types. If the type is zero-sized,
+<code>None</code> is returned. Otherwise, <code>Some(size_in_bytes)</code> is returned.</p>
+<p>This size can be considered as the minimum amount of storage required
+to properly store the given type.</p>
+<p>Alignment is either the same or smaller than this size.</p>
+<h5 id="unchecked-contracts"><a href="#unchecked-contracts">Unchecked Contracts</a></h5>
+<ul>
+<li>
+<p><code>ret &gt;= self.align_req()</code>: The return value of [<code>align_req</code>] never exceeds the return value
+of this method.</p>
+</li>
+<li>
+<p><code>ret.is_none() == self.align_req().is_none()</code>: If the return value is <code>None</code>,
+so will be the return value of [<code>align_req</code>].</p>
+</li>
+</ul>
+<h5 id="contracts"><a href="#contracts">Contracts</a></h5>
+<p>Post-condition: ret is never <code>Some(0)</code></p>
+<ul>
+<li><code>ret != Some(0)</code></li>
+</ul>
+</div></details><details class="rustdoc-toggle" open><summary><div id="method.align_req" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/quartz/ir/types.rs.html#143">source</a></div><h4 class="code-header">fn <a href="#method.align_req" class="fnname">align_req</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/1.62.0/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/1.62.0/std/primitive.u64.html">u64</a>&gt;</h4></div></summary><div class="docblock"><p>Gets the size (in bytes) of the types. If the type is zero-sized,
+<code>None</code> is returned. Otherwise, <code>Some(size_in_bytes)</code> is returned.</p>
+<h5 id="unchecked-contracts-1"><a href="#unchecked-contracts-1">Unchecked Contracts</a></h5>
+<ul>
+<li>
+<p><code>ret &lt;= self.size_req()</code>: The return value of [<code>size_req</code>] is always the same
+as or greater than the return value of this method.</p>
+</li>
+<li>
+<p><code>ret.is_none() == self.size_req().is_none()</code>: If the return value is <code>None</code>,
+so will be the return value of [<code>size_req</code>].</p>
+</li>
+</ul>
+<h5 id="contracts-1"><a href="#contracts-1">Contracts</a></h5>
+<p>Post-condition: ret is never <code>Some(0)</code></p>
+<ul>
+<li><code>ret != Some(0)</code></li>
+</ul>
+<p>Post-condition: alignment is always a power of 2</p>
+<ul>
+<li><code>ret.is_none() || ret.unwrap().is_power_of_two()</code></li>
+</ul>
+</div></details><details class="rustdoc-toggle" open><summary><div id="method.layout" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/quartz/ir/types.rs.html#166">source</a></div><h4 class="code-header">fn <a href="#method.layout" class="fnname">layout</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/1.62.0/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.TypeLayout.html" title="struct quartz::ir::TypeLayout">TypeLayout</a>&gt;</h4></div></summary><div class="docblock"><p>The preferred way of getting both size and alignment data for a type.</p>
+<p>This better codifies the unchecked contracts of [<code>size_req</code>] and [<code>align_req</code>],
+as if both would be <code>None</code> this returns <code>None</code>.</p>
+<p>If this returns <code>None</code>, the type is zero-sized and therefore has no layout requirements.
+Otherwise, the [<code>size</code>] and [<code>align</code>] functions return the requirements.</p>
+<h5 id="example"><a href="#example">Example</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">quartz::ir</span>::<span class="kw-2">*</span>;
+
+<span class="kw">let</span> <span class="ident">ty</span> <span class="op">=</span> <span class="ident">Type::f64</span>();
+<span class="kw">let</span> <span class="ident">layout</span> <span class="op">=</span> <span class="ident">ty</span>.<span class="ident">layout</span>().<span class="ident">unwrap</span>();
+
+<span class="macro">assert_eq!</span>(<span class="ident">layout</span>.<span class="ident">size</span>(), <span class="number">8</span>);
+<span class="macro">assert_eq!</span>(<span class="ident">layout</span>.<span class="ident">align</span>(), <span class="number">8</span>);</code></pre></div>
+<h5 id="contracts-2"><a href="#contracts-2">Contracts</a></h5>
+<p>Post-condition: ret is never <code>Some(0)</code></p>
+<ul>
+<li><code>ret != Some(TypeLayout { size : 0, align : 0 })</code></li>
+</ul>
+</div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><section id="impl-IRType" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/quartz/ir/types.rs.html#1206-1228">source</a></span><a href="#impl-IRType" class="anchor"></a><h3 class="code-header in-band">impl <a class="trait" href="trait.IRType.html" title="trait quartz::ir::IRType">IRType</a> for <a class="enum" href="enum.Type.html" title="enum quartz::ir::Type">Type</a></h3></section><section id="impl-IRType-1" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/quartz/ir/types.rs.html#661-677">source</a></span><a href="#impl-IRType-1" class="anchor"></a><h3 class="code-header in-band">impl <a class="trait" href="trait.IRType.html" title="trait quartz::ir::IRType">IRType</a> for <a class="struct" href="struct.ArrayType.html" title="struct quartz::ir::ArrayType">ArrayType</a></h3></section><section id="impl-IRType-2" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/quartz/ir/types.rs.html#534-542">source</a></span><a href="#impl-IRType-2" class="anchor"></a><h3 class="code-header in-band">impl <a class="trait" href="trait.IRType.html" title="trait quartz::ir::IRType">IRType</a> for <a class="struct" href="struct.BoolType.html" title="struct quartz::ir::BoolType">BoolType</a></h3></section><section id="impl-IRType-3" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/quartz/ir/types.rs.html#496-510">source</a></span><a href="#impl-IRType-3" class="anchor"></a><h3 class="code-header in-band">impl <a class="trait" href="trait.IRType.html" title="trait quartz::ir::IRType">IRType</a> for <a class="struct" href="struct.FloatType.html" title="struct quartz::ir::FloatType">FloatType</a></h3></section><section id="impl-IRType-4" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/quartz/ir/types.rs.html#391-399">source</a></span><a href="#impl-IRType-4" class="anchor"></a><h3 class="code-header in-band">impl <a class="trait" href="trait.IRType.html" title="trait quartz::ir::IRType">IRType</a> for <a class="struct" href="struct.IntType.html" title="struct quartz::ir::IntType">IntType</a></h3></section><section id="impl-IRType-5" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/quartz/ir/types.rs.html#566-574">source</a></span><a href="#impl-IRType-5" class="anchor"></a><h3 class="code-header in-band">impl <a class="trait" href="trait.IRType.html" title="trait quartz::ir::IRType">IRType</a> for <a class="struct" href="struct.PtrType.html" title="struct quartz::ir::PtrType">PtrType</a></h3></section><section id="impl-IRType-6" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../src/quartz/ir/types.rs.html#852-866">source</a></span><a href="#impl-IRType-6" class="anchor"></a><h3 class="code-header in-band">impl <a class="trait" href="trait.IRType.html" title="trait quartz::ir::IRType">IRType</a> for <a class="struct" href="struct.StructType.html" title="struct quartz::ir::StructType">StructType</a></h3></section></div><script type="text/javascript" src="../../implementors/quartz/ir/types/trait.IRType.js" data-ignore-extern-crates="" async></script></section></div></main><script>renderMathInElement(document.body, {
+    delimiters: [
+        {left: "$$", right: "$$", display: true},
+        {left: "\\[", right: "\\]", display: true},
+        {left: "\\(", right: "\\)", display: false},
+        {left: "$", right: "$", display: false}
+    ]
+});</script>
+<div id="rustdoc-vars" data-root-path="../../" data-current-crate="quartz" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.62.0 (a8314ef7d 2022-06-27)" ></div>
+</body></html>
