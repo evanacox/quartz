@@ -14,41 +14,14 @@
 // limitations under the License.                                            //
 //======---------------------------------------------------------------======//
 
-#![deny(missing_docs)]
-#![deny(rustdoc::broken_intra_doc_links)]
-#![deny(rustdoc::private_intra_doc_links)]
-
-//! # Quartz
+//! # Quartz Prelude
 //!
-//! Quartz is a compiler middle- and back-end library in the same vein as LLVM or Cranelift.
+//! This prelude re-exports the essentials for working with Quartz. Most notably,
+//! it re-exports almost all of the IR APIs, along with some of the simple compile APIs.
 //!
-//! This crate contains the APIs necessary to create, manipulate, and compile Quartz IR (QIR),
-//! the IR format used throughout the project.
+//! More advanced cases will always need to import directly, this re-exported subset
+//! is meant to be enough for simple tutorial/example programs to compile.
 
-pub mod ir;
-pub mod prelude;
+use crate::ir;
 
-/// Adds two numbers together.
-///
-/// ## Example
-/// ```
-/// use quartz::add_two;
-///
-/// let result = add_two(2, 2);
-/// assert_eq!(result, 4);
-/// ```
-pub fn add_two(x: i32, y: i32) -> i32 {
-    x + y
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add_two(2, 2);
-
-        assert_eq!(result, 4);
-    }
-}
+pub use ir::*;
