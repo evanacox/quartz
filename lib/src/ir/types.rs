@@ -54,8 +54,7 @@ use strum_macros::IntoStaticStr;
 ///
 /// # Example
 /// ```
-/// use quartz::ir::{Type, IRType};
-///
+/// # use quartz::ir::*;
 /// let ty = Type::i16();
 /// let layout = ty.layout().unwrap();
 ///
@@ -79,8 +78,7 @@ impl TypeLayout {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::*;
-    ///
+    /// # use quartz::ir::*;
     /// let ty = Type::i32();
     /// let layout = ty.layout().unwrap();
     ///
@@ -95,8 +93,7 @@ impl TypeLayout {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::*;
-    ///
+    /// # use quartz::ir::*;
     /// let ty = Type::i32();
     /// let layout = ty.layout().unwrap();
     ///
@@ -112,6 +109,16 @@ impl TypeLayout {
 ///
 /// Note that *any* type includes odd types, such as opaque structures,
 /// zero-length arrays, empty structures, etc.
+///
+/// ```
+/// # use quartz::ir::*;
+/// fn check_if_16_bytes_large(ty: &dyn IRType) -> bool {
+///     match ty.layout() {
+///         Some(layout) => layout.size() == 16,
+///         None => false
+///     }
+/// }
+/// ```
 #[contract_trait]
 pub trait IRType {
     /// Gets the exact size (in bytes) of the types. If the type is zero-sized,
@@ -154,8 +161,7 @@ pub trait IRType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::*;
-    ///
+    /// # use quartz::ir::*;
     /// let ty = Type::f64();
     /// let layout = ty.layout().unwrap();
     ///
@@ -191,8 +197,7 @@ impl Debug for HiddenZeroSize {
 ///
 /// # Example
 /// ```
-/// use quartz::ir::*;
-///
+/// # use quartz::ir::*;
 /// let t1 = IntType::i8();
 /// assert_eq!(t1.width(), 8);
 /// assert_eq!(t1.mask(), 0xFF);
@@ -216,8 +221,7 @@ macro_rules! int_const_shorthand {
         #[doc = ""]
         #[doc = "# Example"]
         #[doc = "```"]
-        #[doc = "use quartz::ir::IntType;"]
-        #[doc = ""]
+        #[doc = "# use quartz::ir::IntType;"]
         #[doc = concat!("let t1 = IntType::i", stringify!($n), "();")]
         #[doc = concat!("let t2 = IntType::new(", stringify!($n), ");")]
         #[doc = ""]
@@ -245,8 +249,7 @@ impl IntType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::*;
-    ///
+    /// # use quartz::ir::*;
     /// let ty = IntType::new(32); // ty => i32
     ///
     /// assert_eq!(ty.width(), 32);
@@ -270,8 +273,7 @@ impl IntType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::IntType;
-    ///
+    /// # use quartz::ir::IntType;
     /// let ty = IntType::new(64);
     ///
     /// assert_eq!(ty.width(), 64);
@@ -287,8 +289,7 @@ impl IntType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::IntType;
-    ///
+    /// # use quartz::ir::IntType;
     /// let t1 = IntType::i32();
     /// let t2 = IntType::i8();
     ///
@@ -305,8 +306,7 @@ impl IntType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::IntType;
-    ///
+    /// # use quartz::ir::IntType;
     /// let t1 = IntType::new(64);
     /// let t2 = IntType::new(16);
     ///
@@ -322,8 +322,7 @@ impl IntType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::IntType;
-    ///
+    /// # use quartz::ir::IntType;
     /// let t1 = IntType::new(8);
     /// assert_eq!(t1.is_i8(), true);
     ///
@@ -339,8 +338,7 @@ impl IntType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::IntType;
-    ///
+    /// # use quartz::ir::IntType;
     /// let t1 = IntType::new(16);
     /// assert_eq!(t1.is_i16(), true);
     ///
@@ -356,8 +354,7 @@ impl IntType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::IntType;
-    ///
+    /// # use quartz::ir::IntType;
     /// let t1 = IntType::new(32);
     /// assert_eq!(t1.is_i32(), true);
     ///
@@ -373,8 +370,7 @@ impl IntType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::IntType;
-    ///
+    /// # use quartz::ir::IntType;
     /// let t1 = IntType::new(64);
     /// assert_eq!(t1.is_i64(), true);
     ///
@@ -401,6 +397,7 @@ impl IRType for IntType {
 /// Maps the hardware representation of the floating-point types
 /// to enum variants.
 ///
+/// These map directly to types defined in the IEEE-754 standard.
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Debug)]
 pub enum IEEEFloat {
     /// Models `f32`, an IEEE single-precision float (`binary32`).
@@ -418,8 +415,7 @@ pub enum IEEEFloat {
 ///
 /// # Example
 /// ```
-/// use quartz::ir::*;
-///
+/// # use quartz::ir::*;
 /// let t1 = Type::float(IEEEFloat::Single);
 /// let t2 = Type::f32();
 ///
@@ -435,8 +431,7 @@ impl FloatType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::*;
-    ///
+    /// # use quartz::ir::*;
     /// let t1 = FloatType::new(IEEEFloat::Single);
     /// let t2 = FloatType::f32();
     ///
@@ -451,8 +446,7 @@ impl FloatType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::*;
-    ///
+    /// # use quartz::ir::*;
     /// let t1 = FloatType::new(IEEEFloat::Single);
     /// let t2 = FloatType::f32();
     ///
@@ -466,8 +460,7 @@ impl FloatType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::*;
-    ///
+    /// # use quartz::ir::*;
     /// let t1 = FloatType::new(IEEEFloat::Double);
     /// let t2 = FloatType::f64();
     ///
@@ -481,8 +474,7 @@ impl FloatType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::*;
-    ///
+    /// # use quartz::ir::*;
     /// let t1 = FloatType::new(IEEEFloat::Single);
     ///
     /// assert_eq!(t1.real(), IEEEFloat::Single);
@@ -509,9 +501,18 @@ impl IRType for FloatType {
     }
 }
 
-/// Models the `bool` fundamental type.
+/// Models the `bool` fundamental type. As of right now this type is completely stateless,
+/// but in the future that may change.
 ///
-/// See `bool` in the [Reference](https://pages.evanacox.io/quartz/qir/reference#bool-booleans)
+/// See `bool` in the [Reference](https://pages.evanacox.io/quartz/qir/reference#bool-booleans).
+///
+/// # Example
+/// ```
+/// # use quartz::ir::*;
+/// let ty = Type::bool();
+///
+/// assert!(ty.is_bool());
+/// ```
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Debug)]
 pub struct BoolType(HiddenZeroSize);
 
@@ -520,8 +521,7 @@ impl BoolType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::BoolType;
-    ///
+    /// # use quartz::ir::BoolType;
     /// let b = BoolType::new();
     /// ```
     #[inline]
@@ -541,9 +541,18 @@ impl IRType for BoolType {
     }
 }
 
-/// Models the `ptr` fundamental type.
+/// Models the `ptr` fundamental type. As of right now this type is completely stateless,
+/// but in the future that may change.
 ///
-/// See `ptr` in the [Reference](https://pages.evanacox.io/quartz/qir/reference#ptr-pointers)
+/// See `ptr` in the [Reference](https://pages.evanacox.io/quartz/qir/reference#ptr-pointers).
+///
+/// # Example
+/// ```
+/// # use quartz::ir::*;
+/// let ty = Type::ptr();
+///
+/// assert!(ty.is_ptr());
+/// ```
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Debug)]
 pub struct PtrType(HiddenZeroSize);
 
@@ -552,8 +561,7 @@ impl PtrType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::PtrType;
-    ///
+    /// # use quartz::ir::PtrType;
     /// let b = PtrType::new();
     /// ```
     #[inline]
@@ -584,7 +592,15 @@ struct ArrayData {
 /// Implemented as a wrapper around a boxed type, so we don't run into
 /// recursive type issues with `IRType`.
 ///
-/// See `[T; N]` in the [Reference](https://pages.evanacox.io/quartz/qir/reference#t-n-arrays)
+/// See `[T; N]` in the [Reference](https://pages.evanacox.io/quartz/qir/reference#t-n-arrays).
+///
+/// # Example
+/// ```
+/// # use quartz::ir::*;
+/// let ty = Type::array(Type::i16(), 512);
+///
+/// assert!(ty.is_array());
+/// ```
 #[repr(transparent)]
 #[derive(Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Debug)]
 pub struct ArrayType {
@@ -596,8 +612,7 @@ impl ArrayType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::{ArrayType, Type};
-    ///
+    /// # use quartz::ir::{ArrayType, Type};
     /// let t1 = Type::i8();
     /// let t2 = ArrayType::new(t1.clone(), 16);
     ///
@@ -614,8 +629,7 @@ impl ArrayType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::{ArrayType, Type};
-    ///
+    /// # use quartz::ir::{ArrayType, Type};
     /// let t1 = Type::i8();
     /// let t2 = ArrayType::new(t1.clone(), 16);
     ///
@@ -629,8 +643,7 @@ impl ArrayType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::{ArrayType, Type};
-    ///
+    /// # use quartz::ir::{ArrayType, Type};
     /// let t1 = Type::i8();
     /// let t2 = ArrayType::new(t1.clone(), 64);
     ///
@@ -644,8 +657,7 @@ impl ArrayType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::{ArrayType, Type};
-    ///
+    /// # use quartz::ir::{ArrayType, Type};
     /// let t1 = ArrayType::new(Type::i8(), 16);
     /// assert_eq!(t1.is_empty(), false);
     ///
@@ -719,10 +731,11 @@ fn largest_member_alignment(members: &[Type]) -> u64 {
 /// Implemented as a wrapper around a boxed type, so we don't run into
 /// recursive type issues with `IRType`.
 ///
+/// See `{ T... }` in the [Reference](https://pages.evanacox.io/quartz/qir/reference#-t--structures).
+///
 /// # Example
 /// ```
-/// use quartz::ir::*;
-///
+/// # use quartz::ir::*;
 /// // ty => { ptr, i64, i64 }
 /// let ty = StructType::new([
 ///     Type::ptr(),
@@ -730,8 +743,6 @@ fn largest_member_alignment(members: &[Type]) -> u64 {
 ///     Type::i64()
 /// ]);
 /// ```
-///
-/// See `{ T... }` in the [Reference](https://pages.evanacox.io/quartz/qir/reference#-t--structures)
 #[repr(transparent)]
 #[derive(Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Debug)]
 pub struct StructType(Box<StructTypeData>);
@@ -741,8 +752,7 @@ impl StructType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::*;
-    ///
+    /// # use quartz::ir::*;
     /// // ty => { }
     /// let ty = StructType::empty();
     ///
@@ -761,8 +771,7 @@ impl StructType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::{StructType, Type};
-    ///
+    /// # use quartz::ir::{StructType, Type};
     /// // ty => { i32, ptr }
     /// let ty = StructType::new([Type::i32(), Type::ptr()]);
     ///
@@ -777,9 +786,8 @@ impl StructType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::{StructType, Type};
-    /// use smallvec::smallvec;
-    ///
+    /// # use quartz::ir::{StructType, Type};
+    /// # use smallvec::smallvec;
     /// // ty => { i32, ptr }
     /// let ty = StructType::from_vec(smallvec![Type::i32(), Type::ptr()]);
     ///
@@ -800,8 +808,7 @@ impl StructType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::*;
-    ///
+    /// # use quartz::ir::*;
     /// let t1 = StructType::new([Type::i8(), Type::i8()]);
     /// assert_eq!(t1.members(), [Type::i8(), Type::i8()]);
     ///
@@ -817,8 +824,7 @@ impl StructType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::*;
-    ///
+    /// # use quartz::ir::*;
     /// let t1 = StructType::new([Type::i8(), Type::i8()]);
     /// assert_eq!(t1.len(), 2);
     ///
@@ -834,8 +840,7 @@ impl StructType {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::*;
-    ///
+    /// # use quartz::ir::*;
     /// let t1 = StructType::new([Type::i8(), Type::i8()]);
     /// assert_eq!(t1.is_empty(), false);
     ///
@@ -903,8 +908,7 @@ macro_rules! helper_methods {
         #[doc = concat!("Checks if `self` is currently a `", stringify!($variant), "`.")]
         #[doc = ""]
         #[doc = "```"]
-        #[doc = "use quartz::ir::*;"]
-        #[doc = ""]
+        #[doc = "# use quartz::ir::*;"]
         #[doc = concat!("let ty = ", $right_init, ";")]
         #[doc = concat!("assert_eq!(ty.is_", stringify!($lower), "(), true);")]
         #[doc = concat!("assert_eq!(ty.is_", stringify!($wrong_lower), "(), false);")]
@@ -924,15 +928,13 @@ macro_rules! helper_methods {
         #[doc = ""]
         #[doc = "# Examples"]
         #[doc = "```"]
-        #[doc = "use quartz::ir::*;"]
-        #[doc = ""]
+        #[doc = "# use quartz::ir::*;"]
         #[doc = concat!("let ty = ", $right_init, ";")]
         #[doc = concat!("let data: ", stringify!($type), " = ty.unwrap_", stringify!($lower), "();")]
         #[doc = "```"]
         #[doc = ""]
         #[doc = "```should_panic"]
-        #[doc = "use quartz::ir::*;"]
-        #[doc = ""]
+        #[doc = "# use quartz::ir::*;"]
         #[doc = concat!("let ty = ", $wrong_init, ";")]
         #[doc = concat!("let data: ", stringify!($type), " = ty.unwrap_", stringify!($lower), "(); // panics!")]
         #[doc = "```"]
@@ -951,15 +953,13 @@ macro_rules! helper_methods {
         #[doc = ""]
         #[doc = "# Examples"]
         #[doc = "```"]
-        #[doc = "use quartz::ir::*;"]
-        #[doc = ""]
+        #[doc = "# use quartz::ir::*;"]
         #[doc = concat!("let ty = ", $right_init, ";")]
         #[doc = concat!("let data: ", stringify!($type), " = ty.expect_", stringify!($lower), "(\"should be the right type\");")]
         #[doc = "```"]
         #[doc = ""]
         #[doc = "```should_panic"]
-        #[doc = "use quartz::ir::*;"]
-        #[doc = ""]
+        #[doc = "# use quartz::ir::*;"]
         #[doc = concat!("let ty = ", $wrong_init, ";")]
         #[doc = concat!("let data: ", stringify!($type), " = ty.expect_", stringify!($lower), "(\"should be the right type\"); // panics!")]
         #[doc = "```"]
@@ -983,8 +983,7 @@ macro_rules! int_shorthand {
         #[doc = ""]
         #[doc = "# Example"]
         #[doc = "```"]
-        #[doc = "use quartz::ir::Type;"]
-        #[doc = ""]
+        #[doc = "# use quartz::ir::Type;"]
         #[doc = "let ty1 = Type::i8();"]
         #[doc = "let ty2 = Type::int(8);"]
         #[doc = ""]
@@ -1004,8 +1003,7 @@ macro_rules! float_shorthand {
         #[doc = ""]
         #[doc = "# Example"]
         #[doc = "```"]
-        #[doc = "use quartz::ir::*;"]
-        #[doc = ""]
+        #[doc = "# use quartz::ir::*;"]
         #[doc = concat!("let ty1 = Type::f", stringify!($len), "();")]
         #[doc = concat!("let ty2 = Type::float(IEEEFloat::", stringify!($long), ");")]
         #[doc = ""]
@@ -1023,8 +1021,7 @@ impl Type {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::Type;
-    ///
+    /// # use quartz::ir::Type;
     /// let ty = Type::bool();
     ///
     /// assert!(ty.is_bool());
@@ -1038,8 +1035,7 @@ impl Type {
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::Type;
-    ///
+    /// # use quartz::ir::Type;
     /// let ty = Type::int(32);
     ///
     /// assert!(ty.is_int());
@@ -1050,17 +1046,11 @@ impl Type {
         Self::Int(IntType::of_width_unchecked(bit_width))
     }
 
-    int_shorthand!(8, i8);
-    int_shorthand!(16, i16);
-    int_shorthand!(32, i32);
-    int_shorthand!(64, i64);
-
     /// Creates a type modeling `fN` from a given type of float.
     ///
     /// # Example
     /// ```
-    /// use quartz::ir::*;
-    ///
+    /// # use quartz::ir::*;
     /// let ty = Type::float(IEEEFloat::Single);
     ///
     /// assert_eq!(ty.is_float(), true)
@@ -1070,14 +1060,11 @@ impl Type {
         Self::Float(FloatType::new(ty))
     }
 
-    float_shorthand!(32, Single, f32);
-    float_shorthand!(64, Double, f64);
-
     /// Creates a new `ptr` type. Equivalent to `Type::Ptr(PtrType::new())`.
     ///
+    /// # Example
     /// ```
-    /// use quartz::ir::Type;
-    ///
+    /// # use quartz::ir::Type;
     /// let ty = Type::ptr();
     ///
     /// assert_eq!(ty.is_ptr(), true);
@@ -1089,9 +1076,9 @@ impl Type {
 
     /// Creates a new `[T; N]` type. Equivalent to `Type::Array(ArrayType::new(ty, len))`.
     ///
+    /// # Example
     /// ```
-    /// use quartz::ir::Type;
-    ///
+    /// # use quartz::ir::Type;
     /// let ty = Type::array(Type::i32(), 16);
     ///
     /// assert_eq!(ty.is_array(), true);
@@ -1103,9 +1090,9 @@ impl Type {
 
     /// Creates a new `{ T... }` type. Equivalent to `Type::Struct(StructType::new(members))`.
     ///
+    /// # Example
     /// ```
-    /// use quartz::ir::Type;
-    ///
+    /// # use quartz::ir::Type;
     /// let ty = Type::structure([Type::f64(), Type::f64()]);
     ///
     /// assert_eq!(ty.is_struct(), true);
@@ -1115,11 +1102,19 @@ impl Type {
         Self::Struct(StructType::new(members))
     }
 
+    int_shorthand!(8, i8);
+    int_shorthand!(16, i16);
+    int_shorthand!(32, i32);
+    int_shorthand!(64, i64);
+
+    float_shorthand!(32, Single, f32);
+    float_shorthand!(64, Double, f64);
+
     /// Creates the empty `{ }` type. Equivalent to `Type::Struct(StructType::empty())`.
     ///
+    /// # Example
     /// ```
-    /// use quartz::ir::Type;
-    ///
+    /// # use quartz::ir::Type;
     /// let ty = Type::empty_struct();
     ///
     /// assert_eq!(ty.is_struct(), true);
