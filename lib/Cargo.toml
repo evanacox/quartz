@@ -6,3 +6,8 @@ authors = ["Evan Cox <evanacox00 at gmail dot com>"]
 description = "A scrappy compiler backend library"
 
 [dependencies]
+contracts = { version = "0.6.3", features = ["override_debug"] }
+lazy_static = "1.4.0"
+smallvec = "1.9.0"
+static_assertions = "1.1.0"
+strum_macros = "0.24.2"

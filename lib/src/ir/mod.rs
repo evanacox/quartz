@@ -14,41 +14,23 @@
 // limitations under the License.                                            //
 //======---------------------------------------------------------------======//
 
-#![deny(missing_docs)]
-#![deny(rustdoc::broken_intra_doc_links)]
-#![deny(rustdoc::private_intra_doc_links)]
-
-//! # Quartz
+//! # Quartz IR
 //!
-//! Quartz is a compiler middle- and back-end library in the same vein as LLVM or Cranelift.
+//! This module contains the data structures and functions that make up the
+//! QIR API. All IR is modeled in this module and this module alone.
 //!
-//! This crate contains the APIs necessary to create, manipulate, and compile Quartz IR (QIR),
-//! the IR format used throughout the project.
+//! This module also exposes the IR parsing/serialization APIs, as those are
+//! closely intertwined with the structure of the IR.
+//!
+//! In memory, instructions are modeled using a doubly-linked list. This is due to
+//! the nature of an IR designed specifically for optimizations:
+//!
+//! * The data structure must be able to maintain an order (i.e. it has to be sequential)
+//! * The data structure must support fast random insertion/deletion
+//! * The data structure **must support fast splicing**
+//!
+//! This effectively removes any possibility for clever data structures.
 
-pub mod ir;
-pub mod prelude;
+mod types;
 
-/// Adds two numbers together.
-///
-/// ## Example
-/// ```
-/// use quartz::add_two;
-///
-/// let result = add_two(2, 2);
-/// assert_eq!(result, 4);
-/// ```
-pub fn add_two(x: i32, y: i32) -> i32 {
-    x + y
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add_two(2, 2);
-
-        assert_eq!(result, 4);
-    }
-}
+pub use types::*;
